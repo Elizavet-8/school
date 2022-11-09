@@ -1,0 +1,37 @@
+.profile_visibity {
+    display: none !important;
+}
+
+div.only_desktop {
+    display: flex;
+}
+
+ul.only_desktop {
+    display: block;
+}
+
+.only_mobile {
+    display: none;
+}
+
+@media (max-width: 554px) {
+    .person_image_margin {
+        margin-bottom: 24px;
+    }
+
+    div.only_desktop {
+        display: none !important;
+    }
+
+    ul.only_desktop {
+        display: none;
+    }
+
+    .only_mobile {
+        display: flex;
+    }
+}
+
+#button_hide_profile_info:hover {
+    background-color: #fabe4b;
+}

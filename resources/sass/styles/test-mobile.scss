@@ -1,0 +1,1192 @@
+.compliance-img-mobile {
+    display: none;
+}
+.swipe-block {
+    display: none;
+    background: #ffffff;
+    padding: 15px 0 15px 15px;
+    margin: 20px 0 25px;
+    img {
+        width: 22px;
+        height: 22px;
+    }
+    p {
+        font-size: 10px;
+        color: rgb(119, 119, 119);
+        line-height: 1.4;
+        text-align: left;
+        margin: 0 0 0 10px;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .col-3 {
+        padding-right: 0;
+    }
+    .col-9 {
+        padding-left: 0;
+    }
+}
+.test-explanation-mob {
+    display: none;
+}
+.test-liquor {
+    .test-radio label {
+        display: flex;
+        align-items: flex-start;
+    }
+}
+@media (max-width: 1000px) {
+    .test-indicated-by-arrows {
+        .test-compliance {
+            flex-direction: column;
+        }
+        .test-compliance .compliance-block {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+        .test-compliance-last {
+            flex-direction: column-reverse;
+        }
+    }
+    .drappable-elm {
+        width: 100%;
+    }
+    .test-exercise-in-topical-diagnostics-preparatory {
+        .test-compliance {
+            flex-direction: column;
+        }
+        .compliance-block {
+            min-height: 1px;
+            margin-top: 50px;
+        }
+        .test-explanation-mob {
+            display: block;
+        }
+        .test-explanation-desc {
+            display: none;
+        }
+        .compliance-img {
+            width: 100%;
+        }
+    }
+    .explanation-list div {
+        width: 40%;
+        &:first-child {
+            margin-right: 15px;
+        }
+    }
+    .test-segment-of-the-spinal-cord {
+        .test-main {
+            width: 90%;
+        }
+        .compliance-img img {
+            width: 101%;
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: -12px;
+                }
+                &:nth-child(2) {
+                    padding-top: 0;
+                }
+                &:nth-child(3) {
+                    padding-top: 0;
+                }
+                &:nth-child(4) {
+                    padding-top: 0;
+                }
+                &:nth-child(5) {
+                    padding-top: 23px;
+                }
+                &:nth-child(6) {
+                    padding-top: 28px;
+                }
+                &:nth-child(7) {
+                    padding-top: 37px;
+                }
+                &:nth-child(8) {
+                    padding-top: 30px;
+                }
+                &:nth-child(9) {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+    .test-arcs-of-reflexes-closure {
+        .compliance-img {
+            height: 380px;
+        }
+        .test-main {
+            width: 90%;
+        }
+        .compliance-img {
+            width: 145%;
+            img {
+                width: 103%;
+            }
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: 32px;
+                }
+                &:nth-child(2) {
+                    padding-top: 70px;
+                }
+                &:nth-child(3) {
+                    padding-top: 7px;
+                }
+                &:nth-child(4) {
+                    padding-top: 30px;
+                }
+                &:nth-child(5) {
+                    padding-top: 6px;
+                }
+                &:nth-child(6) {
+                    padding-top: 13px;
+                }
+                &:nth-child(7) {
+                    padding-top: 0px;
+                }
+                &:nth-child(8) {
+                    padding-top: 3px;
+                }
+                &:nth-child(9) {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+    .test-drag-36 {
+        .test-compliance {
+            flex-direction: column;
+        }
+        .compliance-block {
+            min-height: 24px;
+            margin-top: 730px;
+        }
+    }
+    .test-main-67 {
+        .compliance-img {
+            width: 300px;
+            height: 400px;
+            overflow: hidden;
+            overflow-x: scroll;
+            img {
+                width: 630px;
+                height: 225px;
+            }
+        }
+        .compliance-img-scroll {
+            position: relative;
+        }
+    }
+    .test-drag76 {
+        .test-compliance {
+            flex-direction: column;
+            max-height: 900px;
+        }
+        .compliance-block {
+            min-height: 65px;
+            margin-top: 410px;
+        }
+    }
+    .test-drag78 {
+        .test-compliance {
+            flex-direction: column;
+            max-height: 900px;
+        }
+        .compliance-block {
+            min-height: 65px;
+            margin-top: 410px;
+        }
+    }
+    .test-main-72,
+    .test-main-73 {
+        .test-compliance {
+            flex-direction: column;
+        }
+    }
+    .test-main-90 {
+        .test-compliance {
+            flex-direction: row;
+        }
+    }
+    .test-liquor {
+        .compliance-img {
+            width: 50%;
+            img {
+                width: 100%;
+            }
+        }
+        .compliance-block {
+            width: 50%;
+        }
+    }
+}
+@media (max-width: 992px) {
+    .test-segment-of-the-spinal-cord {
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: -5px;
+                }
+                &:nth-child(5) {
+                    padding-top: 37px;
+                }
+                &:nth-child(6) {
+                    padding-top: 35px;
+                }
+                &:nth-child(7) {
+                    padding-top: 50px;
+                }
+                &:nth-child(8) {
+                    padding-top: 40px;
+                }
+                &:nth-child(9) {
+                    padding-top: 5px;
+                }
+            }
+        }
+    }
+    .test-arcs-of-reflexes-closure {
+        .compliance-img {
+            height: 450px;
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: 43px;
+                }
+                &:nth-child(2) {
+                    padding-top: 87px;
+                }
+                &:nth-child(3) {
+                    padding-top: 14px;
+                }
+                &:nth-child(4) {
+                    padding-top: 39px;
+                }
+                &:nth-child(5) {
+                    padding-top: 12px;
+                }
+                &:nth-child(6) {
+                    padding-top: 18px;
+                }
+                &:nth-child(7) {
+                    padding-top: 3px;
+                }
+                &:nth-child(8) {
+                    padding-top: 7px;
+                }
+                &:nth-child(9) {
+                    padding-top: 6px;
+                }
+            }
+        }
+    }
+    .squares-item__input {
+        width: 100%;
+    }
+    .test-exercise-in-topical-diagnostics {
+        .compliance-block {
+            margin-left: 10px;
+        }
+    }
+    .test-drag-36 {
+        .test-compliance {
+            flex-direction: row;
+        }
+        .compliance-block {
+            min-height: 724px;
+            margin-top: 0px;
+        }
+    }
+    .test-indicated-by-arrows .test-compliance {
+        flex-direction: row;
+    }
+    .test-drag-36 {
+        .compliance-img36 {
+            width: 85%;
+        }
+    }
+    .test-main-73 .compliance-img {
+        display: flex;
+        justify-content: center;
+    }
+    .test-main-90 {
+        .compliance-list {
+            width: 100%;
+        }
+    }
+}
+@media (max-width: 768px) {
+    .test-signs-of-paralysis-paresis {
+        .test-compliance {
+            flex-direction: column;
+            .compliance-txt {
+                br {
+                    display: none;
+                }
+            }
+        }
+    }
+    .test-main {
+        width: 90%;
+    }
+    .test-segment-of-the-spinal-cord {
+        .compliance-img img {
+            width: 107%;
+            margin-left: -25px;
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: -12px;
+                }
+                &:nth-child(5) {
+                    padding-top: 28px;
+                }
+                &:nth-child(6) {
+                    padding-top: 28px;
+                }
+                &:nth-child(7) {
+                    padding-top: 40px;
+                }
+                &:nth-child(8) {
+                    padding-top: 31px;
+                }
+                &:nth-child(9) {
+                    padding-top: 2px;
+                }
+            }
+        }
+    }
+    .test-exercise-in-topical-diagnostics-preparatory {
+        .compliance-block {
+            min-height: 100px;
+            margin-top: 0;
+        }
+        .compliance-img {
+            display: flex;
+            justify-content: center;
+        }
+        .compliance-elem-add__item div:first-child {
+            width: 100%;
+        }
+        .test-drag .compliance-img {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .test-peripheral-nerves-as-part-of-reflex-arcs {
+        width: 90%;
+    }
+    .test-exercise-in-topical-diagnostics-preparatory .compliance-block,
+    .test-exercise-in-topical-diagnostic .compliance-block {
+        padding-left: 0;
+    }
+    .test-arcs-of-reflexes-closure {
+        .compliance-img {
+            height: 380px;
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: 32px;
+                }
+                &:nth-child(2) {
+                    padding-top: 70px;
+                }
+                &:nth-child(3) {
+                    padding-top: 7px;
+                }
+                &:nth-child(4) {
+                    padding-top: 30px;
+                }
+                &:nth-child(5) {
+                    padding-top: 6px;
+                }
+                &:nth-child(6) {
+                    padding-top: 13px;
+                }
+                &:nth-child(7) {
+                    padding-top: 0px;
+                }
+                &:nth-child(8) {
+                    padding-top: 3px;
+                }
+                &:nth-child(9) {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+    .explanation-list div {
+        width: 45%;
+    }
+    .test-explanation-mob {
+        display: block;
+    }
+    .test-explanation-desc {
+        display: none;
+    }
+
+    .compliance-radio__elm {
+        width: 50%;
+    }
+    .test-exercise-in-topical-diagnostics {
+        .compliance-img {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+    .test-exercise-in-topical-diagnostics {
+        .compliance-radio__block {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .test-exercise-in-topical-diagnostics .test-compliance,
+    .test-exercise-in-topical-diagnostics-preparatory .test-compliance {
+        flex-direction: column;
+    }
+    .test-indicated-by-arrows {
+        .test-compliance {
+            flex-direction: column;
+        }
+        .test-compliance .compliance-block {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+        .test-compliance-last {
+            flex-direction: column-reverse;
+            margin-top: 0;
+            .compliance-block {
+                margin-top: 0px;
+            }
+        }
+    }
+    .test-drag-36 {
+        .test-compliance {
+            flex-direction: column;
+        }
+        .compliance-block {
+            min-height: 24px;
+            margin-top: 730px;
+        }
+    }
+    .test-compliance {
+        display: flex;
+        flex-direction: column;
+    }
+    .test-elements-of-the-visual-analyzer,
+    .test-the-blind-field-is-shaded {
+        .test-compliance {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+    .test-explanation .explanation-txt .last {
+        margin-bottom: 0px;
+    }
+    .test-explanation .explanation-txt .blue {
+        margin-bottom: 15px;
+    }
+    .test-exercise-in-topical-diagnostic
+        .test-explanation
+        .explanation-txt
+        span {
+        margin: 10px 0 0;
+    }
+    .test-liquor {
+        .compliance-img {
+            width: 60%;
+        }
+        .compliance-block {
+            width: 100%;
+        }
+    }
+    .test-main-90 {
+        .test-compliance {
+            flex-direction: row;
+        }
+    }
+    .mistake-img img {
+        width: 100%;
+    }
+}
+@media (max-width: 576px) {
+    .swipe-block {
+        display: block;
+    }
+    .test-number {
+        width: 100%;
+    }
+    .test-exercise-in-topical-diagnostics {
+        .compliance-img {
+            display: flex;
+            justify-content: center;
+        }
+        .compliance-radio__block {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .test-compliance .compliance-list {
+        li {
+            padding-top: 5px;
+            p {
+                margin-top: 0px;
+            }
+        }
+    }
+    .compliance-radio__elm {
+        width: 50%;
+    }
+    .test-peripheral-nerves-as-part-of-reflex-arcs {
+        form p {
+            margin: 15px 0 5px;
+            margin-right: 0px;
+        }
+        .test-compliance li {
+            margin-bottom: 0px;
+        }
+    }
+    .test-arcs-of-reflexes-closure .compliance-img {
+        width: 100%;
+    }
+    .compliance-img__img {
+        display: none;
+    }
+    .compliance-img-mobile {
+        display: block;
+    }
+    .test-block {
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    .test-compliance {
+        flex-direction: column;
+    }
+    .test-segment-of-the-spinal-cord {
+        width: 90%;
+        /* полоса прокрутки (скроллбар) */
+        ::-webkit-scrollbar {
+            height: 4px; /* высота для горизонтального скролла */
+            background: transparent;
+        }
+
+        /* ползунок скроллбара */
+        ::-webkit-scrollbar-thumb {
+            background-color: #f5f5f5;
+        }
+        ::-webkit-scrollbar {
+            /* chrome based */
+            width: 0px; /* ширина scrollbar'a */
+            background: transparent; /* опционально */
+        }
+        .compliance-img {
+            width: 100%;
+            height: 366px;
+            overflow-x: scroll;
+            img {
+                height: 366px;
+                width: 530px;
+                margin-left: 0;
+            }
+        }
+        .test-compliance {
+            flex-direction: row;
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: -14px;
+                }
+                &:nth-child(2) {
+                    padding-top: 0;
+                }
+                &:nth-child(3) {
+                    padding-top: 4px;
+                }
+                &:nth-child(4) {
+                    padding-top: 0;
+                }
+                &:nth-child(5) {
+                    padding-top: 36px;
+                }
+                &:nth-child(6) {
+                    padding-top: 35px;
+                }
+                &:nth-child(7) {
+                    padding-top: 48px;
+                }
+                &:nth-child(8) {
+                    padding-top: 39px;
+                }
+                &:nth-child(9) {
+                    padding-top: 4px;
+                }
+            }
+        }
+    }
+    .test-arcs-of-reflexes-closure {
+        .test-compliance {
+            flex-direction: row;
+        }
+        .compliance-img {
+            width: 100%;
+            height: 375px;
+            img {
+                height: 368px;
+                width: 708px;
+                margin-left: 0;
+            }
+        }
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: 27px;
+                }
+                &:nth-child(2) {
+                    padding-top: 66px;
+                }
+                &:nth-child(3) {
+                    padding-top: 7px;
+                }
+                &:nth-child(4) {
+                    padding-top: 30px;
+                }
+                &:nth-child(5) {
+                    padding-top: 6px;
+                }
+                &:nth-child(6) {
+                    padding-top: 8px;
+                }
+                &:nth-child(7) {
+                    padding-top: 0;
+                }
+                &:nth-child(8) {
+                    padding-top: 0;
+                }
+                &:nth-child(9) {
+                    padding-top: 2px;
+                }
+            }
+        }
+    }
+    .materials-block .tests-title {
+        margin-left: 15px;
+    }
+    .pass-menu .menu-title {
+        margin-left: 15px;
+    }
+    .pass-tests .tests-item p {
+        margin-top: 0;
+    }
+    .pass-tests .tests-list {
+        margin: 30px 15px;
+    }
+    .compliance-img-mobile {
+        width: 100%;
+    }
+    .chapter-accordion .trigger-elem #checkbox-1:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-2:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-3:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-4:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-5:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-6:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-7:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-8:checked + label,
+    .chapter-accordion .trigger-elem #checkbox-9:checked + label {
+        padding: 20px 15px;
+    }
+    #checkbox-1:checked ~ .content,
+    #checkbox-2:checked ~ .content,
+    #checkbox-3:checked ~ .content,
+    #checkbox-4:checked ~ .content,
+    #checkbox-5:checked ~ .content,
+    #checkbox-6:checked ~ .content,
+    #checkbox-7:checked ~ .content,
+    #checkbox-8:checked ~ .content,
+    #checkbox-9:checked ~ .content {
+        max-height: 420px;
+    }
+    .test-nervous-system {
+        .compliance-list {
+            li {
+                &:nth-child(1) {
+                    margin-top: 5px;
+                }
+                &:nth-child(2) {
+                    padding-top: 5px;
+                }
+                &:nth-child(3) {
+                    padding-top: 5px;
+                }
+                &:nth-child(4) {
+                    padding-top: 5px;
+                }
+                &:nth-child(5) {
+                    padding-top: 5px;
+                }
+                &:nth-child(6) {
+                    padding-top: 5px;
+                }
+                &:nth-child(7) {
+                    padding-top: 5px;
+                }
+                &:nth-child(8) {
+                    padding-top: 5px;
+                }
+                &:nth-child(9) {
+                    padding-top: 5px;
+                }
+                &:nth-child(10) {
+                    padding-top: 5px;
+                }
+                &:nth-child(11) {
+                    padding-top: 5px;
+                }
+                &:nth-child(12) {
+                    padding-top: 5px;
+                }
+                &:nth-child(13) {
+                    padding-top: 5px;
+                }
+            }
+        }
+    }
+    .explanation-list div {
+        width: 100%;
+        &:first-child {
+            margin-right: 0;
+        }
+    }
+    .test-exercise-in-topical-diagnostics-preparatory-drag {
+        .test-txt {
+            margin-top: 0px;
+        }
+    }
+    .test-prevalence-of-paralysis {
+        .test-txt {
+            margin-top: 0px;
+        }
+    }
+    .test-prevalence-of-paralysis .compliance-elem {
+        width: 100%;
+    }
+    .compliance-img-31 {
+        img {
+            width: 100%;
+        }
+    }
+    .test-indicated-by-arrows {
+        .compliance-list-txt li p {
+            display: flex;
+            margin-top: 0;
+        }
+    }
+    .test-main {
+        width: 95%;
+    }
+    .compliance-elem-add__item {
+        .test-txt {
+            margin-top: 0;
+        }
+    }
+    .test-elements-of-the-visual-analyzer {
+        .test-compliance {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .test-elements-of-the-visual-analyzer {
+        .compliance-list {
+            li {
+                padding-top: 5px;
+                &:nth-child(1) {
+                    padding-top: 5px;
+                }
+                &:nth-child(2) {
+                    padding-top: 5px;
+                }
+                &:nth-child(3) {
+                    padding-top: 5px;
+                }
+                &:nth-child(4) {
+                    padding-top: 5px;
+                }
+                &:nth-child(5) {
+                    padding-top: 5px;
+                }
+                &:nth-child(6) {
+                    padding-top: 5px;
+                }
+            }
+        }
+    }
+    .test-the-blind-field-is-shaded {
+        .compliance-list {
+            margin-left: 5%;
+            li {
+                padding-top: 82px;
+            }
+        }
+    }
+    .test-main-90 {
+        .test-compliance {
+            flex-direction: column;
+        }
+    }
+    .compliance-block-btn li button p {
+        margin: 0;
+    }
+    .test-main-77,
+    .test-main-89 {
+        .compliance-img img {
+            width: 100%;
+        }
+    }
+    .test-signs-of-paralysis-paresis {
+        .test-radio {
+            flex-direction: column;
+        }
+    }
+    .test-main-90 {
+        .compliance-img {
+            display: flex;
+            justify-content: flex-end;
+            img {
+                width: 80%;
+                height: 531px;
+            }
+        }
+    }
+    .compliance-block {
+        margin-left: 0;
+    }
+    .block-81 .title {
+        padding: 0 15px;
+        font-size: 12px;
+    }
+    .test-exercise-in-topical-diagnostics {
+        .compliance-img-answer {
+            width: 100px;
+            height: 162px;
+        }
+    }
+    .test-main-73 {
+        .compliance-img-answer {
+            width: 71px;
+            height: 172px;
+        }
+    }
+    .test-main-72 {
+        .compliance-img-answer {
+            width: 119px;
+            height: 104px;
+        }
+    }
+    .test-drag71,
+    .test-drag74 {
+        .compliance-img {
+            width: 300px;
+            height: 400px;
+            overflow: hidden;
+            overflow-x: scroll;
+            img {
+                width: 630px;
+                height: 225px;
+            }
+        }
+        .compliance-img-scroll {
+            position: relative;
+        }
+    }
+    .mistake-prg {
+        margin: 35px auto 15px;
+    }
+    .mistake-block {
+        flex-direction: column;
+    }
+}
+@media (max-width: 360px) {
+    .pass-tests .tests-list {
+        padding: 0 15px;
+    }
+    .test-indicated-by-arrow {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 220px;
+                height: 400px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-course-of-the-first-neurons {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 315px;
+                height: 515px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-types-of-sensitivity-disorders {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 220px;
+                height: 572px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .compliance-block-btn li button p {
+        margin-top: 0;
+    }
+    .test-exercise-in-topical-diagnostics,
+    .test-exercise-in-topical-diagnostics-preparatory {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 220px;
+                height: 600px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-exercise-in-topical-diagnostic {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 220px;
+                height: 600px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-main-47,
+    .test-main-49 {
+        .compliance-img img {
+            width: 230px;
+            height: 311px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-44,
+    .test-main-45,
+    .test-main-58 {
+        .compliance-img img {
+            width: 230px;
+            height: 265px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-48,
+    .test-main-46 {
+        .compliance-img img {
+            width: 230px;
+            height: 336px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-exercise-in-topical-diagnostics-preparatory-drag {
+        .compliance-img {
+            img {
+                height: 500px;
+            }
+        }
+        .compliance-block {
+            padding-top: 200px;
+        }
+    }
+    .test-main-51,
+    .test-main-53 {
+        .compliance-img img {
+            width: 230px;
+            height: 150px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-54,
+    .test-main-56,
+    .test-main-57 {
+        .compliance-img img {
+            width: 230px;
+            height: 274px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-the-blind-field-is-shaded {
+        .compliance-img img {
+            width: 100%;
+        }
+        .compliance-list li {
+            padding-top: 38px;
+        }
+    }
+    .test-main-63 {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 331px;
+                height: 468px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-main-64 {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 330px;
+                height: 532px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-main-65 {
+        .compliance-img img {
+            width: 230px;
+            height: 397px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-68,
+    .test-main-69,
+    .test-main-70 {
+        .compliance-img img {
+            width: 230px;
+            height: 306px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-72 {
+        .compliance-img img {
+            width: 330px;
+            height: 404px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-72 {
+        .compliance-img img {
+            width: 330px;
+            height: 322px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-51 .test-exercise-in-topical-diagnostic .compliance-img {
+        height: 200px;
+    }
+    .test-main-59 {
+        .compliance-img img {
+            width: 230px;
+            height: 409px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-73 {
+        .compliance-img img {
+            width: 330px;
+            height: 332px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-75 {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 330px;
+                height: 389px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-main-77 {
+        .compliance-img img {
+            width: 100%;
+            height: 325px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-main-80,
+    .test-main-83,
+    .test-main-84,
+    .test-main-89 {
+        .compliance-img img {
+            width: 232px;
+            height: 315px;
+            margin: 8px 0 -70px;
+        }
+    }
+    .test-liquor {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 330px;
+                height: 675px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-main-90 {
+        .compliance-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            overflow-y: scroll;
+            img {
+                width: 230px;
+                height: 531px;
+                margin: 8px 0 -70px;
+            }
+        }
+    }
+    .test-exercise-in-topical-diagnostics-19 {
+        .compliance-img img {
+            width: 230px;
+            height: 565px;
+            margin: 8px 0 -70px;
+        }
+    }
+}

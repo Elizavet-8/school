@@ -1,0 +1,22 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// // Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+@import "styles/style.scss"; //header, footer, body, 1 layout
+@import "styles/mobile.scss"; // mobile header, footer, body, 1 layout
+@import "styles/account.scss"; // 2 layout
+@import "styles/setting.scss"; // 4, 5, 17, 18, 19, 20, 21 layouts
+@import "styles/structure.scss"; // 7 layout
+@import "styles/test.scss"; // 9, test
+@import "styles/test-mobile.scss"; // mobile 9, test
+@import "styles/pass.scss"; // 8, 9, 10, 11, 12, 14, 15, 16 layouts
+@import "styles/materials.scss"; // 14, 15, 16 layouts
+@import "styles/profile.scss"; // 14, 15, 16 layouts
+
+
+@import "styles/landing.scss"; // landing
