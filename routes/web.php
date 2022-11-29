@@ -217,6 +217,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|teacher']], func
     Route::get('file/{file}/delete', [FileController::class, 'deleteFile'])->name('file.delete');
     Route::resource('file', FileController::class);
 
+    Route::get('/calendar', function () {
+        return view('admin.calendar');
+     });
+
     // json
     Route::group(['prefix' => 'api'], function () {
         Route::resource('users', ApiUserController::class);
