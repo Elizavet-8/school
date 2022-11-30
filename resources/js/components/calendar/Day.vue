@@ -13,7 +13,7 @@
             <div class="col-sm-6">
                 <div v-show="isDaySelected">
                     <span class="label label-success" @click="showAddEventForm">
-                        Добавить событие</span
+                        Добавить урок</span
                     >
                 </div>
             </div>

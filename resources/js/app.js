@@ -103,9 +103,14 @@ Vue.component('practical-status', require('./components/PracticalStatus.vue').de
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- Vue.component(
+Vue.component(
     "calendar-component",
     require("./components/Calendar.vue").default
+);
+
+Vue.component(
+    "lesson-component",
+    require("./components/LessonComponent.vue").default
 );
 
 import SimpleVueValidation from "simple-vue-validator";

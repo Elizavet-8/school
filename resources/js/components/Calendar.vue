@@ -53,30 +53,7 @@ export default {
             error: null,
             currentMonth: moment().startOf("month"),
             eventsList: [
-                {
-                    id: 1,
-                    title: "9:00 Математика. Тема: очень длинная тема",
-                    color: "panel-primary",
-                    date: new Date(new Date().setDate(new Date().getDate()-12)),
-                },
-                {
-                    id: 5,
-                    title: "13:00 География. Тема: очень длинная тема",
-                    color: "panel-primary",
-                    date: new Date(new Date().setDate(new Date().getDate()-12)),
-                },
-                {
-                    id: 2,
-                    title: "9:00 География. Тема: очень длинная тема",
-                    color: "panel-primary",
-                    date: new Date(new Date().setDate(new Date().getDate()-14)),
-                },
-                {
-                    id: 3,
-                    title: "9:00 Физика. Тема: очень длинная тема",
-                    color: "panel-primary",
-                    date: new Date(new Date().setDate(new Date().getDate()-14)),
-                },
+
             ],
         };
     },
@@ -117,22 +94,19 @@ export default {
         });
 
         axios
-            .get("/admin/lesson")
+            .get("/admin/api/lessons")
             .then((res) => {
-                //window.location.href = `/admin/calendar`;
-
                 res.data.forEach((lesson) => {
-                    console.log(lesson.started_at);
-
                     this.eventsList.push({
                         id: lesson.id,
-                        title: lesson.title,
-                        date: new Date(lesson.started_at * 1000),
+                        title: "Test title",
+                        date: new Date(lesson.started_at),
                         color: "panel-default",
                     });
                 });
 
-                console.log(this.events);
+                console.log(res);
+                //console.log(this.events);
             })
             .catch((err) => {
                 //this.loading = false;

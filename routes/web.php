@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Api\SchoolController as ApiSchoolController;
 use App\Http\Controllers\Admin\Api\UserController as ApiUserController;
+use App\Http\Controllers\Admin\Api\LessonController as ApiLessonController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\ThemeController;
+use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\SendApplicationController;
 use App\Http\Controllers\GuestController;
@@ -221,8 +223,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|teacher']], func
         return view('admin.calendar');
      });
 
+    // Расписание
+    Route::get('/lesson/date/{date}', [LessonController::class, 'lessonDate'])->name('lesson.date');
+    Route::resource('lesson', LessonController::class);
+
     // json
     Route::group(['prefix' => 'api'], function () {
+        Route::resource('lessons', ApiLessonController::class);
         Route::resource('users', ApiUserController::class);
         Route::resource('schools', ApiSchoolController::class);
     });
