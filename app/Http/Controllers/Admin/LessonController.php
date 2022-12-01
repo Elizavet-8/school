@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -59,9 +60,17 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Lesson $lesson)
     {
-        //
+        $user = Auth::user();
+        
+        if ($user->hasRole('admin')) {
+            $courses = Course::all();
+        } else {
+            $courses = Course::where('user_id', $user->id)->get();
+        }
+
+        return view('admin.lesson.edit', compact('courses', 'lesson'));
     }
 
     /**

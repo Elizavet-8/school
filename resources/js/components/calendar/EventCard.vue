@@ -2,7 +2,7 @@
     <div
         class="panel no-margin"
         :class="[event.color]"
-        @click="showEventDetails"
+        @click="editEvent"
     >
         <div
             class="panel-heading event-title btn btn-block btn-primary mb-1"
@@ -22,15 +22,14 @@ export default {
         isDaySelected: {
             type: Boolean,
         },
+        day: {
+            type: Object,
+        },
     },
     methods: {
-        showEventDetails() {
+        editEvent() {
             if (this.isDaySelected) {
-                // TODO: implement event details presentation
-                alert(
-                    this.event.title +
-                        " is selected. Can you help implement this too?"
-                );
+                window.location.href = `/admin/lesson/${this.event.id}/edit`;
             }
         },
     },

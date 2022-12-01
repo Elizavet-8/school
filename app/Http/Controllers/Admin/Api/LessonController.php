@@ -77,9 +77,14 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Lesson $lesson)
     {
-        //
+        $lesson->course_id = $request->course_id;
+        $lesson->started_at = Carbon::parse($request->started_at);
+        $lesson->ended_at = Carbon::parse($request->ended_at);
+        $lesson->save();
+
+        return $lesson;
     }
 
     /**

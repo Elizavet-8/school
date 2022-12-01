@@ -88,11 +88,25 @@ export default {
     props: [
         "date",
         "courses",
-        "roles"
+        "roles",
+        "lesson"
     ],
     mounted() {
-        this.start = moment(this.date).format("YYYY-MM-DD");
-        this.course_id = this.courses[0].id;
+        console.log(this.lesson);
+
+        if (this.lesson) {
+            this.course_id = this.lesson.course_id;
+
+            const started = new Date(this.lesson.started_at);
+            this.start = moment(started).format("YYYY-MM-DD");
+            const ended = new Date(this.lesson.ended_at);
+
+            this.start_time = this.makeTime(started);
+            this.end_time = this.makeTime(ended);
+        } else {
+            this.course_id = this.courses[0].id;
+            this.start = moment(this.date).format("YYYY-MM-DD");
+        }
     },
     data() {
         return {
@@ -108,27 +122,59 @@ export default {
             const startDateObj = this.parseTime(this.start_time);
             const endDateObj = this.parseTime(this.end_time);
 
-            axios
-                .post("/admin/api/lessons", {
-                    course_id: this.course_id,
-                    started_at: new Date(startDateObj),
-                    ended_at: new Date(endDateObj),
-                })
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => {
-                    //this.loading = false;
-                    console.log(err);
-                });
+            if (this.lesson) {
+                axios
+                    .patch(`/admin/api/lessons/${this.lesson.id}`, {
+                        course_id: this.course_id,
+                        started_at: new Date(startDateObj),
+                        ended_at: new Date(endDateObj),
+                    })
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            } else {
+                axios
+                    .post("/admin/api/lessons", {
+                        course_id: this.course_id,
+                        started_at: new Date(startDateObj),
+                        ended_at: new Date(endDateObj),
+                    })
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+
+           
         },
         parseTime(time) {
             const arrayOfStrings = time.split(":");
             const hours = parseInt(arrayOfStrings[0]);
             const minutes = parseInt(arrayOfStrings[1]);
-            let newDateObj = moment(this.start).add(minutes, "m").toDate();
-            newDateObj = moment(this.start).add(hours, "h").toDate();
+            let newDateObj = moment(this.start)
+                .add(minutes, "m")
+                .add(hours, "h")
+                .toDate();
             return newDateObj;
+        },
+        makeTime(time) {
+            let minutes;
+            let hours;
+
+            time.getMinutes() < 10
+                ? (minutes = "0" + time.getMinutes())
+                : (minutes = "" + time.getMinutes());
+
+            time.getHours() + 3 < 10
+                ? (hours = "0" + (time.getHours() + 3))
+                : (hours = "" + (time.getHours() + 3));
+
+            return "" + hours + ":" + minutes;
         }
     }
 }

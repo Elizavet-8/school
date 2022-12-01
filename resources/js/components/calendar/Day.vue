@@ -25,7 +25,7 @@
             <event-card
                 :event="event"
                 :key="event.id"
-                :day-date="day.date"
+                :day="day"
                 :is-day-selected="isDaySelected"
                 v-for="event in day.events"
             >
