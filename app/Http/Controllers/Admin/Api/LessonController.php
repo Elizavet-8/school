@@ -16,7 +16,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::with('course.user', 'themes')->get();
+        $lessons = Lesson::orderBy('started_at')->with('course.user', 'themes')->get();
 
         return $lessons;
     }
@@ -39,6 +39,17 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'course_id' => 'exists:App\Models\Course,id',
+            'started_at' => 'required|before:ended_at',
+            'ended_at' => 'required',
+        ],
+            [
+                'exists' => 'Курс не найден, возможно он был удален',
+                'required' => 'Все обязательные поля должны быть заполнены',
+                'before' => 'Время начала должно быть до времени окончания'
+            ]);
+
         $lesson = new Lesson();
         $lesson->course_id = $request->course_id;
         $lesson->started_at = Carbon::parse($request->started_at);
@@ -83,6 +94,17 @@ class LessonController extends Controller
      */
     public function update(Request $request, Lesson $lesson)
     {
+        $validator = $request->validate([
+            'course_id' => 'exists:App\Models\Course,id',
+            'started_at' => 'required|before:ended_at',
+            'ended_at' => 'required',
+        ],
+            [
+                'exists' => 'Курс не найден, возможно он был удален',
+                'required' => 'Все обязательные поля должны быть заполнены',
+                'before' => 'Время начала должно быть до времени окончания'
+            ]);
+            
         $lesson->course_id = $request->course_id;
         $lesson->started_at = Carbon::parse($request->started_at);
         $lesson->ended_at = Carbon::parse($request->ended_at);

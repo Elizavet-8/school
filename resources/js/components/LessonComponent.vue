@@ -1,5 +1,15 @@
 <template>
     <form v-on:submit.prevent="save">
+        <div v-if="(errors.length > 0)" class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <ul>
+                <li
+                    v-for="error in errors"
+                    :key="error" 
+                    class="ml-2"             
+                >{{ error }}</li>
+            </ul>
+        </div>
         <div class="row mb-3">
             <div class="col-12">
                 <a href="/" class="btn btn-secondary">Назад</a>
@@ -159,6 +169,7 @@ export default {
             is_admin: false,
             start_time: "00:00",
             end_time: "00:00",
+            errors: []
         }
     },
     watch: {
@@ -204,6 +215,7 @@ export default {
         save() {
             const startDateObj = this.parseTime(this.start_time);
             const endDateObj = this.parseTime(this.end_time);
+            this.errors = [];
 
             if (this.lesson) {
                 axios
@@ -217,7 +229,11 @@ export default {
                         console.log(res);
                     })
                     .catch((err) => {
-                        console.log(err);
+                        const errors = err.response.data.errors;
+
+                        Object.values(errors).forEach(error => {
+                            this.errors = [...this.errors, ...error]
+                        });
                     });
             } else {
                 axios
@@ -231,7 +247,11 @@ export default {
                         console.log(res);
                     })
                     .catch((err) => {
-                        console.log(err);
+                        const errors = err.response.data.errors;
+
+                        Object.values(errors).forEach(error => {
+                            this.errors = [...this.errors, ...error]
+                        });
                     });
             }
 

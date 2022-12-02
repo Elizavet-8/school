@@ -96,8 +96,6 @@ export default {
         axios
             .get("/admin/api/lessons")
             .then((res) => {
-                console.log(res.data);
-
                 res.data.forEach((lesson) => {
                     this.eventsList.push({
                         id: lesson.id,
