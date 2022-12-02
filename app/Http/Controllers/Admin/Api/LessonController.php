@@ -45,6 +45,10 @@ class LessonController extends Controller
         $lesson->ended_at = Carbon::parse($request->ended_at);
         $lesson->save();
 
+        foreach ($request->themes as $theme) {
+            $lesson->themes()->attach($theme);
+        }
+
         return $lesson;
     }
 
@@ -83,6 +87,11 @@ class LessonController extends Controller
         $lesson->started_at = Carbon::parse($request->started_at);
         $lesson->ended_at = Carbon::parse($request->ended_at);
         $lesson->save();
+
+        $lesson->themes()->detach();
+        foreach ($request->themes as $theme) {
+            $lesson->themes()->attach($theme);
+        }
 
         return $lesson;
     }

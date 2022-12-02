@@ -22,6 +22,7 @@
           <lesson-component
             :courses="{{ $courses }}"
             :lesson="{{ $lesson }}"
+            :oldthemes="{{ $lesson->themes }}"
           ></lesson-component>
 
         <!-- /.row -->

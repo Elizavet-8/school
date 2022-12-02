@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Api\SchoolController as ApiSchoolController;
 use App\Http\Controllers\Admin\Api\UserController as ApiUserController;
 use App\Http\Controllers\Admin\Api\LessonController as ApiLessonController;
+use App\Http\Controllers\Admin\Api\CourseController as ApiCourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
@@ -229,6 +230,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|teacher']], func
 
     // json
     Route::group(['prefix' => 'api'], function () {
+        Route::get('/course/{course}/chapters', [ApiCourseController::class, 'getChapters']);
+        Route::get('/chapter/{chapter}/themes', [ApiCourseController::class, 'getThemes']);
         Route::resource('lessons', ApiLessonController::class);
         Route::resource('users', ApiUserController::class);
         Route::resource('schools', ApiSchoolController::class);

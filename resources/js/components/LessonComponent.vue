@@ -35,6 +35,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label>Дата</label>
+                            <input
+                                v-model="start"
+                                name="start"
+                                type="date"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="form-group">
                             <label>Время начала</label>
                             <input
                                 v-model="start_time"
@@ -70,7 +79,33 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                            <div class="form-group">
+                                <label>Модуль</label>
+                                <select
+                                    class="form-control custom-select"
+                                    v-model="chapter_id"
+                                >
+                                    <option
+                                        v-for="chapter in chapters"
+                                        :key="chapter.id"
+                                        :value="chapter.id"
+                                    >
+                                        {{ chapter.title }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Темы</label><br>
+                                <div v-for="theme in themes" :key="'theme'+theme.id">
+                                    <input
+                                        type="checkbox" 
+                                        :id="('theme'+theme.title)" 
+                                        :value="theme.id" 
+                                        v-model="selected_themes">
+                                    <label
+                                        :for="('theme'+theme.title)">{{ theme.title }}</label>
+                                    </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -89,11 +124,10 @@ export default {
         "date",
         "courses",
         "roles",
-        "lesson"
+        "lesson",
+        "oldthemes"
     ],
     mounted() {
-        console.log(this.lesson);
-
         if (this.lesson) {
             this.course_id = this.lesson.course_id;
 
@@ -103,6 +137,12 @@ export default {
 
             this.start_time = this.makeTime(started);
             this.end_time = this.makeTime(ended);
+
+            /*if (this.oldthemes.length > 0) {
+                this.oldthemes.forEach(oldtheme => {
+                    this.selected_themes.push(oldtheme.id); 
+               });
+            }*/
         } else {
             this.course_id = this.courses[0].id;
             this.start = moment(this.date).format("YYYY-MM-DD");
@@ -112,12 +152,55 @@ export default {
         return {
             start: new Date(),
             course_id: null,
+            chapters: [],
+            chapter_id: null,
+            themes: [],
+            selected_themes: [],
             is_admin: false,
             start_time: "00:00",
             end_time: "00:00",
         }
     },
+    watch: {
+        course_id: function (newCourseId, oldCourseId) {
+            this.getChapters(newCourseId);
+        },
+        chapter_id: function (newChapterId, oldChapterId) {
+            this.getThemes(newChapterId);
+
+            if (oldChapterId == null && this.oldthemes.length > 0 && this.oldthemes[0].chapter_id == newChapterId) {
+                this.oldthemes.forEach(oldtheme => {
+                        this.selected_themes.push(oldtheme.id); 
+                });
+            } else {
+                this.selected_themes = [];
+            }
+        }
+    },
     methods: {
+        getChapters(courseId) {
+            axios
+                .get(`/admin/api/course/${courseId}/chapters`)
+                .then((res) => {
+                    this.chapters = res.data;
+                    if (this.chapters.length > 0) {
+                        this.chapter_id = this.chapters[0].id;
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });   
+        },
+        getThemes(chapterId) {
+            axios
+                .get(`/admin/api/chapter/${chapterId}/themes`)
+                .then((res) => {
+                    this.themes = res.data;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
         save() {
             const startDateObj = this.parseTime(this.start_time);
             const endDateObj = this.parseTime(this.end_time);
@@ -128,6 +211,7 @@ export default {
                         course_id: this.course_id,
                         started_at: new Date(startDateObj),
                         ended_at: new Date(endDateObj),
+                        themes: this.selected_themes
                     })
                     .then((res) => {
                         console.log(res);
@@ -141,6 +225,7 @@ export default {
                         course_id: this.course_id,
                         started_at: new Date(startDateObj),
                         ended_at: new Date(endDateObj),
+                        themes: this.selected_themes
                     })
                     .then((res) => {
                         console.log(res);
@@ -170,9 +255,15 @@ export default {
                 ? (minutes = "0" + time.getMinutes())
                 : (minutes = "" + time.getMinutes());
 
-            time.getHours() + 3 < 10
-                ? (hours = "0" + (time.getHours() + 3))
-                : (hours = "" + (time.getHours() + 3));
+            let finalHours = time.getHours() + 3;
+
+            if (finalHours == 24) {
+                finalHours = 0;
+            }
+
+            finalHours < 10
+                ? (hours = "0" + finalHours)
+                : (hours = "" + finalHours);
 
             return "" + hours + ":" + minutes;
         }
