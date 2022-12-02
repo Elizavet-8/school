@@ -16,7 +16,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::with('course.user', 'themes')->get();
 
         return $lessons;
     }

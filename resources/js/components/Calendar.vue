@@ -96,17 +96,16 @@ export default {
         axios
             .get("/admin/api/lessons")
             .then((res) => {
+                console.log(res.data);
+
                 res.data.forEach((lesson) => {
                     this.eventsList.push({
                         id: lesson.id,
-                        title: "Test title",
+                        lesson: lesson,
                         date: new Date(lesson.started_at),
                         color: "panel-default",
                     });
                 });
-
-                console.log(res);
-                //console.log(this.events);
             })
             .catch((err) => {
                 //this.loading = false;
