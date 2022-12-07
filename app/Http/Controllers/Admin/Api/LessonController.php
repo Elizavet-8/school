@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Lesson;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LessonController extends Controller
 {
@@ -54,6 +55,16 @@ class LessonController extends Controller
         $lesson->course_id = $request->course_id;
         $lesson->started_at = Carbon::parse($request->started_at);
         $lesson->ended_at = Carbon::parse($request->ended_at);
+        
+        $interrupted_lessons = $this->getInterruptedLessons($lesson);
+
+        if ($interrupted_lessons->count() > 0) {
+            $error = ValidationException::withMessages([
+                'test_field' => ['Test error']
+            ]);
+            throw $error;
+        }
+
         $lesson->save();
 
         foreach ($request->themes as $theme) {
@@ -127,5 +138,15 @@ class LessonController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getInterruptedLessons(Lesson $lesson)
+    {
+        $course = $lesson->course;
+        $user = $course->user;
+        $interrupted_my_lessons = Lesson::whereBetween('started_at', [$lesson->started_at, $lesson->ended_at])
+                                        ->orWhereBetween('ended_at', [$lesson->started_at, $lesson->ended_at])->get();
+        
+        return $interrupted_my_lessons;
     }
 }
