@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\Lesson;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -56,14 +57,7 @@ class LessonController extends Controller
         $lesson->started_at = Carbon::parse($request->started_at);
         $lesson->ended_at = Carbon::parse($request->ended_at);
         
-        $interrupted_lessons = $this->getInterruptedLessons($lesson);
-
-        if ($interrupted_lessons->count() > 0) {
-            $error = ValidationException::withMessages([
-                'test_field' => ['Test error']
-            ]);
-            throw $error;
-        }
+        $this->checkInterruptedLessons($lesson);
 
         $lesson->save();
 
@@ -140,13 +134,45 @@ class LessonController extends Controller
         //
     }
 
-    private function getInterruptedLessons(Lesson $lesson)
+    private function checkInterruptedLessons(Lesson $lesson)
     {
         $course = $lesson->course;
         $user = $course->user;
-        $interrupted_my_lessons = Lesson::whereBetween('started_at', [$lesson->started_at, $lesson->ended_at])
-                                        ->orWhereBetween('ended_at', [$lesson->started_at, $lesson->ended_at])->get();
+        $course_ids = Course::where('user_id', $user->id)->pluck('id')->toArray();
+
+        $interrupted_my_lessons = $this->getInterruptedLessons($lesson, $course_ids);
+
+        if ($interrupted_my_lessons->count() > 0) {
+            $interrupted_my_lesson = $interrupted_my_lessons[0];
+
+            $error = ValidationException::withMessages([
+                'started_at' => ['Время урока совпадает с другим Вашим уроком (курс "' . $interrupted_my_lesson->course->title . '")']
+            ]);
+            throw $error;
+        }
+
+        $course_ids = Course::where('grade', $course->grade)->pluck('id')->toArray();
+
+        $interrupted_other_lessons = $this->getInterruptedLessons($lesson, $course_ids);
+
+        if ($interrupted_other_lessons->count() > 0) {
+            $interrupted_other_lesson = $interrupted_other_lessons[0];
+
+            $error = ValidationException::withMessages([
+                'started_at' => ['Время урока совпадает с другим уроком (курс "' . $interrupted_other_lesson->course->title . '" учитель ' . $interrupted_other_lesson->course->user->name . ')']
+            ]);
+            throw $error;
+        }
+    }
+
+    private function getInterruptedLessons(Lesson $lesson, $course_ids)
+    {
+        $lessons_this_time = Lesson::whereBetween('started_at', [$lesson->started_at, $lesson->ended_at])
+            ->orWhereBetween('ended_at', [$lesson->started_at, $lesson->ended_at])
+            ->orWhere('started_at', '<=', $lesson->started_at)
+            ->where('ended_at', '>=', $lesson->ended_at)
+            ->get();
         
-        return $interrupted_my_lessons;
+        return $lessons_this_time->whereIn('course_id', $course_ids);
     }
 }
