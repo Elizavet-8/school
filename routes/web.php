@@ -25,6 +25,7 @@ use App\Http\Controllers\ExelController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\UserController as UserComponentController;
 use App\Http\Controllers\TestController as UserTestController;
+use App\Http\Controllers\TimetableController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -238,6 +239,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|teacher']], func
     });
 
 });
+
+Route::get('/timetable', TimetableController::class);
 
 Route::view("/", "landing");
 Route::view("/programs", "programs");

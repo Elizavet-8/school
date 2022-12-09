@@ -45,6 +45,7 @@
 <script>
 import moment from "moment";
 import { CHANGE_MONTH } from "./actions";
+import { CHANGE_GRADE } from "./actions";
 
 export default {
     data() {
@@ -55,6 +56,7 @@ export default {
             eventsList: [
 
             ],
+            grade: null
         };
     },
     props: {
@@ -93,22 +95,21 @@ export default {
             me.currentMonth = payload;
         });
 
-        axios
-            .get("/admin/api/lessons")
-            .then((res) => {
-                res.data.forEach((lesson) => {
-                    this.eventsList.push({
-                        id: lesson.id,
-                        lesson: lesson,
-                        date: new Date(lesson.started_at),
-                        color: "panel-default",
-                    });
-                });
-            })
-            .catch((err) => {
-                //this.loading = false;
-                console.log(err);
-            });
+        this.$root.$on(CHANGE_GRADE, function (payload) {
+            me.grade = payload;
+        });
+
+        me.getLessons();
+    },
+    watch: {
+        grade: function (newSelection, oldSelection) {
+            this.getLessons();
+        },
+        eventsList: {
+            handler: function() {
+            },
+            deep: true
+        }
     },
     mounted() {
         this.loading = false;
@@ -158,6 +159,31 @@ export default {
         },
     },
     methods: {
+        getLessons() {
+            axios
+                .get("/timetable", {
+                        params: {
+                            grade: this.grade,
+                        }
+                    })
+                .then((res) => {
+                    this.eventsList = [];
+
+                    res.data.forEach((lesson) => {
+                        this.eventsList.push({
+                            id: lesson.id,
+                            lesson: lesson,
+                            date: new Date(lesson.started_at),
+                            color: "panel-default",
+                        });
+                    });
+                })
+                .catch((err) => {
+                    //this.loading = false;
+                    console.log(err);
+                });
+        },
+
         getEvents(date) {
             return this.events.filter((event) => {
                 return date.isSame(event.date, "day") ? event : null;

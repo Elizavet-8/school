@@ -143,7 +143,8 @@ class LessonController extends Controller
         $interrupted_my_lessons = $this->getInterruptedLessons($lesson, $course_ids);
 
         if ($interrupted_my_lessons->count() > 0) {
-            $interrupted_my_lesson = $interrupted_my_lessons[0];
+            $interrupted_my_lesson = $interrupted_my_lessons->first();
+            
 
             $error = ValidationException::withMessages([
                 'started_at' => ['Время урока совпадает с другим Вашим уроком (курс "' . $interrupted_my_lesson->course->title . '")']
@@ -156,7 +157,7 @@ class LessonController extends Controller
         $interrupted_other_lessons = $this->getInterruptedLessons($lesson, $course_ids);
 
         if ($interrupted_other_lessons->count() > 0) {
-            $interrupted_other_lesson = $interrupted_other_lessons[0];
+            $interrupted_other_lesson = $interrupted_other_lessons->first();
 
             $error = ValidationException::withMessages([
                 'started_at' => ['Время урока совпадает с другим уроком (курс "' . $interrupted_other_lesson->course->title . '" учитель ' . $interrupted_other_lesson->course->user->name . ')']
