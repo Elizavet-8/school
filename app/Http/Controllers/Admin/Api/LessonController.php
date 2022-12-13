@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\File;
 use App\Models\Lesson;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -65,6 +66,18 @@ class LessonController extends Controller
             $lesson->themes()->attach($theme);
         }
 
+        foreach ($request->materials as $material) {
+            $new_material = new File();
+            $new_material->title = $material['title'];
+            $new_material->url = $material['url'];
+            $new_material->type = 'link';
+            $new_material->section_id = $material['section_id'];
+            $new_material->theme_id = $material['theme_id'];
+            $new_material->save();
+
+            $lesson->files()->attach($new_material);
+        }
+
         return $lesson;
     }
 
@@ -118,6 +131,22 @@ class LessonController extends Controller
         $lesson->themes()->detach();
         foreach ($request->themes as $theme) {
             $lesson->themes()->attach($theme);
+        }
+
+        foreach ($lesson->files as $file) {
+            $file->delete();
+        }
+
+        foreach ($request->materials as $material) {
+            $new_material = new File();
+            $new_material->title = $material['title'];
+            $new_material->url = $material['url'];
+            $new_material->type = 'link';
+            $new_material->section_id = $material['section_id'];
+            $new_material->theme_id = $material['theme_id'];
+            $new_material->save();
+
+            $lesson->files()->attach($new_material);
         }
 
         return $lesson;

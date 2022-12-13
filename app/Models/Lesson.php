@@ -29,4 +29,9 @@ class Lesson extends Model
     {
         return $this->belongsToMany(Theme::class);
     }
+
+    public function files()
+    {
+        return $this->belongsToMany(File::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Section;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -63,6 +64,7 @@ class LessonController extends Controller
     public function edit(Lesson $lesson)
     {
         $user = Auth::user();
+        $sections = Section::all();
         
         if ($user->hasRole('admin')) {
             $courses = Course::all();
@@ -70,7 +72,7 @@ class LessonController extends Controller
             $courses = Course::where('user_id', $user->id)->get();
         }
 
-        return view('admin.lesson.edit', compact('courses', 'lesson'));
+        return view('admin.lesson.edit', compact('courses', 'lesson', 'sections'));
     }
 
     /**
@@ -101,6 +103,7 @@ class LessonController extends Controller
         $dateParsed = Carbon::createFromFormat('d-m-Y', $date);
         $date = $dateParsed->format('Y-m-d');
         $user = Auth::user();
+        $sections = Section::all();
         
         if ($user->hasRole('admin')) {
             $courses = Course::all();
@@ -108,6 +111,6 @@ class LessonController extends Controller
             $courses = Course::where('user_id', $user->id)->get();
         }
 
-        return view('admin.lesson.create', compact('date', 'courses'));
+        return view('admin.lesson.create', compact('date', 'courses', 'sections'));
     }
 }

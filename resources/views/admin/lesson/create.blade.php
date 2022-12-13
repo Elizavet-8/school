@@ -22,6 +22,7 @@
           <lesson-component
           :date="'{{ $date }}'"
           :courses="{{ $courses }}"
+          :sections="{{ $sections }}"
           ></lesson-component>
 
         <!-- /.row -->

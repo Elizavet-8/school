@@ -23,6 +23,8 @@
             :courses="{{ $courses }}"
             :lesson="{{ $lesson }}"
             :oldthemes="{{ $lesson->themes }}"
+            :oldmaterials="{{ $lesson->files }}"
+            :sections="{{ $sections }}"
           ></lesson-component>
 
         <!-- /.row -->

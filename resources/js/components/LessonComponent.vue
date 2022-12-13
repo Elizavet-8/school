@@ -122,7 +122,7 @@
                                     <div class="col-3">
                                         <input v-model="materials[key].title" class="form-control" type="text" placeholder="Название">
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <input v-model="materials[key].url" class="form-control" type="text" placeholder="Ссылка">
                                     </div>
                                     <div class="col-3">
@@ -130,16 +130,31 @@
                                             class="form-control custom-select"
                                             v-model="materials[key].theme_id"
                                         >
+                                            <option value="null">Не выбрана</option>
                                             <option
                                                 v-for="selected_theme in selected_themes"
                                                 :key="'selectedtheme'+selected_theme"
                                                 :value="selected_theme"
                                             >
-                                                {{ selected_theme }}
+                                                {{ getThemeTitle(selected_theme) }}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-2">
+                                        <select
+                                            class="form-control custom-select"
+                                            v-model="materials[key].section_id"
+                                        >
+                                            <option
+                                                v-for="section in sections"
+                                                :key="'section'+section.id"
+                                                :value="section.id"
+                                            >
+                                                {{ section.title }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1">
                                         <button @click.prevent="removeTemplate(key)" type="button" class="btn btn-danger">☓</button>
                                     </div>
                                 </div>
@@ -169,7 +184,9 @@ export default {
         "courses",
         "roles",
         "lesson",
-        "oldthemes"
+        "oldthemes",
+        "sections",
+        "oldmaterials"
     ],
     mounted() {
         if (this.lesson) {
@@ -187,6 +204,17 @@ export default {
                     this.selected_themes.push(oldtheme.id); 
                });
             }*/
+
+            if (this.oldmaterials.length > 0) {
+                this.oldmaterials.forEach(material => {
+                    this.materials.push({
+                        title: material.title,
+                        url: material.url,
+                        theme_id: material.theme_id,
+                        section_id: material.section_id
+                    }); 
+               });
+            }
         } else {
             this.course_id = this.courses[0].id;
             this.start = moment(this.date).format("YYYY-MM-DD");
@@ -205,11 +233,7 @@ export default {
             end_time: "00:00",
             errors: [],
             // materials
-            materials: [{
-                title: "",
-                url: "",
-                theme_id: null
-            }]
+            materials: []
         }
     },
     watch: {
@@ -219,7 +243,7 @@ export default {
         chapter_id: function (newChapterId, oldChapterId) {
             this.getThemes(newChapterId);
 
-            if (oldChapterId == null && this.oldthemes.length > 0 && this.oldthemes[0].chapter_id == newChapterId) {
+            if (oldChapterId == null && this.oldthemes?.length > 0 && this.oldthemes[0].chapter_id == newChapterId) {
                 this.oldthemes.forEach(oldtheme => {
                         this.selected_themes.push(oldtheme.id); 
                 });
@@ -229,6 +253,11 @@ export default {
         },
         selected_themes: {
             handler: function() {
+                this.materials.forEach(material => {
+                    if (!this.selected_themes.includes(material.theme_id)) {
+                        material.theme_id = null;
+                    }
+                });
             },
             deep: true
         }
@@ -242,7 +271,8 @@ export default {
                 {
                     title: "",
                     url: "",
-                    theme_id: null
+                    theme_id: null,
+                    section_id: 1
                 }
             );
         },
@@ -251,6 +281,7 @@ export default {
                 .get(`/admin/api/course/${courseId}/chapters`)
                 .then((res) => {
                     this.chapters = res.data;
+
                     if (this.chapters.length > 0) {
                         this.chapter_id = this.chapters[0].id;
                     }
@@ -269,50 +300,61 @@ export default {
                     console.log(err);
                 });
         },
+        getThemeTitle(id) {
+            return this.themes.find(x => x.id === id).title;
+        },
         save() {
             const startDateObj = this.parseTime(this.start_time);
             const endDateObj = this.parseTime(this.end_time);
             this.errors = [];
 
-            if (this.lesson) {
-                axios
-                    .patch(`/admin/api/lessons/${this.lesson.id}`, {
-                        course_id: this.course_id,
-                        started_at: new Date(startDateObj),
-                        ended_at: new Date(endDateObj),
-                        themes: this.selected_themes
-                    })
-                    .then((res) => {
-                        console.log(res);
-                    })
-                    .catch((err) => {
-                        const errors = err.response.data.errors;
+            this.materials.forEach(material => {
+                if (material.theme_id === null) {
+                    this.errors.push('Тема должна быть указана для каждого материала');
+                }
+            });
 
-                        Object.values(errors).forEach(error => {
-                            this.errors = [...this.errors, ...error]
-                        });
-                    });
-            } else {
-                axios
-                    .post("/admin/api/lessons", {
-                        course_id: this.course_id,
-                        started_at: new Date(startDateObj),
-                        ended_at: new Date(endDateObj),
-                        themes: this.selected_themes
-                    })
-                    .then((res) => {
-                        console.log(res);
-                    })
-                    .catch((err) => {
-                        const errors = err.response.data.errors;
+            if (this.errors.length == 0) {
+                if (this.lesson) {
+                    axios
+                        .patch(`/admin/api/lessons/${this.lesson.id}`, {
+                            course_id: this.course_id,
+                            started_at: new Date(startDateObj),
+                            ended_at: new Date(endDateObj),
+                            themes: this.selected_themes,
+                            materials: this.materials
+                        })
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((err) => {
+                            const errors = err.response.data.errors;
 
-                        Object.values(errors).forEach(error => {
-                            this.errors = [...this.errors, ...error]
+                            Object.values(errors).forEach(error => {
+                                this.errors = [...this.errors, ...error]
+                            });
                         });
-                    });
+                } else {
+                    axios
+                        .post("/admin/api/lessons", {
+                            course_id: this.course_id,
+                            started_at: new Date(startDateObj),
+                            ended_at: new Date(endDateObj),
+                            themes: this.selected_themes,
+                            materials: this.materials
+                        })
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((err) => {
+                            const errors = err.response.data.errors;
+
+                            Object.values(errors).forEach(error => {
+                                this.errors = [...this.errors, ...error]
+                            });
+                        });
+                }
             }
-
-           
         },
         parseTime(time) {
             const arrayOfStrings = time.split(":");
