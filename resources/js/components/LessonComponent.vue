@@ -116,6 +116,40 @@
                                         :for="('theme'+theme.title)">{{ theme.title }}</label>
                                     </div>
                             </div>
+                            <div class="form-group">
+                                <label>Материалы</label><br>
+                                <div class="row mb-1" v-for="(material, key) in materials" :key="'material'+key">
+                                    <div class="col-3">
+                                        <input v-model="materials[key].title" class="form-control" type="text" placeholder="Название">
+                                    </div>
+                                    <div class="col-4">
+                                        <input v-model="materials[key].url" class="form-control" type="text" placeholder="Ссылка">
+                                    </div>
+                                    <div class="col-3">
+                                        <select
+                                            class="form-control custom-select"
+                                            v-model="materials[key].theme_id"
+                                        >
+                                            <option
+                                                v-for="selected_theme in selected_themes"
+                                                :key="'selectedtheme'+selected_theme"
+                                                :value="selected_theme"
+                                            >
+                                                {{ selected_theme }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <button @click.prevent="removeTemplate(key)" type="button" class="btn btn-danger">☓</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button @click.prevent="addFileTemplate" type="button" class="btn btn-primary">Добавить</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -169,7 +203,13 @@ export default {
             is_admin: false,
             start_time: "00:00",
             end_time: "00:00",
-            errors: []
+            errors: [],
+            // materials
+            materials: [{
+                title: "",
+                url: "",
+                theme_id: null
+            }]
         }
     },
     watch: {
@@ -186,9 +226,26 @@ export default {
             } else {
                 this.selected_themes = [];
             }
+        },
+        selected_themes: {
+            handler: function() {
+            },
+            deep: true
         }
     },
     methods: {
+        removeTemplate(index) {
+            this.materials.splice(index, 1);
+        },
+        addFileTemplate() {
+            this.materials.push(
+                {
+                    title: "",
+                    url: "",
+                    theme_id: null
+                }
+            );
+        },
         getChapters(courseId) {
             axios
                 .get(`/admin/api/course/${courseId}/chapters`)
