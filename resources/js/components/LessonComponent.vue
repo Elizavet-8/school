@@ -260,6 +260,11 @@ export default {
                 });
             },
             deep: true
+        },
+        errors: {
+            handler: function() {
+            },
+            deep: true
         }
     },
     methods: {
