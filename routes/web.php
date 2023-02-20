@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\Api\SchoolController as ApiSchoolController;
 use App\Http\Controllers\Admin\Api\UserController as ApiUserController;
+use App\Http\Controllers\Admin\Api\LessonController as ApiLessonController;
+use App\Http\Controllers\Admin\Api\CourseController as ApiCourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\ThemeController;
+use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\SendApplicationController;
 use App\Http\Controllers\GuestController;
@@ -22,6 +25,7 @@ use App\Http\Controllers\ExelController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\UserController as UserComponentController;
 use App\Http\Controllers\TestController as UserTestController;
+use App\Http\Controllers\TimetableController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -217,13 +221,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|teacher']], func
     Route::get('file/{file}/delete', [FileController::class, 'deleteFile'])->name('file.delete');
     Route::resource('file', FileController::class);
 
+    Route::get('/calendar', function () {
+        return view('admin.calendar');
+     });
+
+    // Расписание
+    Route::get('/lesson/date/{date}', [LessonController::class, 'lessonDate'])->name('lesson.date');
+    Route::resource('lesson', LessonController::class);
+
     // json
     Route::group(['prefix' => 'api'], function () {
+        Route::get('/course/{course}/chapters', [ApiCourseController::class, 'getChapters']);
+        Route::get('/chapter/{chapter}/themes', [ApiCourseController::class, 'getThemes']);
+        Route::resource('lessons', ApiLessonController::class);
         Route::resource('users', ApiUserController::class);
         Route::resource('schools', ApiSchoolController::class);
     });
 
 });
+
+Route::get('/timetable', TimetableController::class);
 
 Route::view("/", "landing");
 Route::view("/programs", "programs");

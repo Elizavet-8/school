@@ -157,6 +157,16 @@
                         </a>
                     </li>
                     @endrole
+                    @role('admin|teacher')
+                    <li class="nav-item">
+                        <a href="{{ route('lesson.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                                Расписание
+                            </p>
+                        </a>
+                    </li>
+                    @endrole
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

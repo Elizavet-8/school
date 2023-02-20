@@ -19,6 +19,14 @@ Vue.use(VFileInput)
 // Пагинация
 Vue.component("pagination", require("laravel-vue-pagination"));
 
+import VueI18n from "vue-i18n"; //needed for calendar locale
+
+Vue.use(VueI18n);
+
+window.i18n = new VueI18n({
+    locale: "ru",
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -95,6 +103,16 @@ Vue.component('practical-status', require('./components/PracticalStatus.vue').de
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component(
+    "calendar-component",
+    require("./components/Calendar.vue").default
+);
+
+Vue.component(
+    "lesson-component",
+    require("./components/LessonComponent.vue").default
+);
+
 import SimpleVueValidation from "simple-vue-validator";
 Vue.use(SimpleVueValidation);
 
@@ -105,7 +123,8 @@ import store from "../js/store";
 
 const app = new Vue({
     store,
-    el: "#app"
+    el: "#app",
+    i18n
 });
 
 $("#button_hide_profile_info").click(function() {

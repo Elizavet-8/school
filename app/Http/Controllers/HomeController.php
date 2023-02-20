@@ -82,8 +82,6 @@ class HomeController extends Controller
             })->where('grade', $user->grade);
         })->when($user->hasRole('teacher'), function ($query) use ($user) {
             return $query->orWhere('user_id', $user->id);
-        })->when($user->hasRole('student'), function ($query) use ($user) {
-            return $query->orWhereIn('id', $user->availableCourses);
         })->when($user->hasRole('individual'), function ($query) use ($user) {
             return $query->orWhereIn('id', $user->availableCourses);
         })->paginate(10);

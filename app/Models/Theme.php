@@ -128,6 +128,11 @@ class Theme extends Model
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class);
+    }
+
     public function practicals()
     {
         return $this->hasMany(Practical::class);
